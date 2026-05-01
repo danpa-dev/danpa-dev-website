@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = [
+	{
+		title: 'Project Atlas',
+		description: 'Edge-rendered UI with Astro and Vercel.',
+		tags: ['Astro', 'Vercel'],
+		postUrl: '/blog/project-atlas',
+		liveUrl: 'https://example.com',
+	},
+	{
+		title: 'Neon Grove',
+		description: 'Realtime data layer powered by Supabase.',
+		tags: ['Supabase', 'API'],
+		postUrl: '/blog/neon-grove',
+		liveUrl: 'https://example.com',
+	},
+	{
+		title: 'Signal Raft',
+		description: 'Static documentation and reference site.',
+		tags: ['Cloudflare', 'Docs'],
+		postUrl: '/blog/signal-raft',
+		liveUrl: 'https://example.com',
+	},
+];
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+---
+
+<Layout title="Dan Park" description="Developer, builder, and writer.">
+	<div class="container">
+		<div class="intro">
+			<h1>Dan Park</h1>
+			<p>
+				Software engineer who likes to understand things deeply. Great conversationalist, unreasonably good at trivia, currently down a rabbit hole of AI agents and system design.
+			</p>
+			<div class="links">
+				<a href="https://github.com/danpa-dev" target="_blank" rel="noreferrer">GitHub</a>
+				<a href="https://www.linkedin.com/in/dansdansrevolution" target="_blank" rel="noreferrer">LinkedIn</a>
+				<a href="mailto:parkdanws@gmail.com">Email</a>
+			</div>
+		</div>
+
+		<div class="section">
+			<h2 class="section-title">Projects</h2>
+			<div class="card-grid">
+				{projects.map((project) => (
+					<a class="project-card" href={project.postUrl}>
+						<h3>{project.title}</h3>
+						<p>{project.description}</p>
+						<div class="tags">
+							{project.tags.map((tag) => (
+								<span class="tag">{tag}</span>
+							))}
+						</div>
+					</a>
+				))}
+			</div>
+		</div>
+
+		<div class="section">
+			<h2 class="section-title">Writing</h2>
+			<div class="post-list">
+				{posts.map((post) => (
+					<a class="post-item" href={`/blog/${post.slug}`}>
+						<span class="post-title">{post.data.title}</span>
+						<span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+					</a>
+				))}
+			</div>
+		</div>
+	</div>
+</Layout>
