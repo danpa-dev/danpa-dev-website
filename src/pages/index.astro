@@ -25,14 +25,18 @@ const posts = (await getCollection('blog'))
 		</div>
 
 		<div class="section">
-			<h2 class="section-title">Projects</h2>
+			<h2 class="section-title">
+				<a class="section-title-link" href="/projects">Projects</a>
+			</h2>
 			<div class="card-grid">
 				{homeProjects.map((project) => <ProjectCard project={project} showLiveLink={false} />)}
 			</div>
 		</div>
 
 		<div class="section">
-			<h2 class="section-title">Writings</h2>
+			<h2 class="section-title">
+				<a class="section-title-link" href="/blog">Writings</a>
+			</h2>
 			<div class="post-list">
 				{posts.map((post) => (
 					<a class="post-item" href={`/blog/${post.slug}`}>
