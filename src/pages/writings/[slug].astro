@@ -4,8 +4,8 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+	const entries = await getCollection('writings');
+	return entries.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 
 const { post } = Astro.props;
@@ -17,7 +17,7 @@ const { Content } = await post.render();
 		<Breadcrumbs
 			items={[
 				{ label: 'Home', href: '/' },
-				{ label: 'Writings', href: '/blog' },
+				{ label: 'Writings', href: '/writings' },
 				{ label: post.data.title },
 			]}
 		/>

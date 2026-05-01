@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 import { homeProjectCount, projects } from '../data/projects';
 
 const homeProjects = projects.slice(0, homeProjectCount);
-const posts = (await getCollection('blog'))
+const posts = (await getCollection('writings'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3);
 ---
@@ -35,15 +35,19 @@ const posts = (await getCollection('blog'))
 
 		<div class="section">
 			<h2 class="section-title">
-				<a class="section-title-link" href="/blog">Writings</a>
+				<a class="section-title-link" href="/writings">Writings</a>
 			</h2>
 			<div class="post-list">
-				{posts.map((post) => (
-					<a class="post-item" href={`/blog/${post.slug}`}>
-						<span class="post-title">{post.data.title}</span>
-						<span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
-					</a>
-				))}
+				{posts.length === 0 ? (
+					<p class="home-writings-empty">Nothing here yet—add Markdown under <code>src/content/writings/</code>.</p>
+				) : (
+					posts.map((post) => (
+						<a class="post-item" href={`/writings/${post.slug}`}>
+							<span class="post-title">{post.data.title}</span>
+							<span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+						</a>
+					))
+				)}
 			</div>
 		</div>
 	</div>

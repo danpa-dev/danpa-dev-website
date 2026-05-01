@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getProjectBySlug } from '../../data/projects';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+	const entries = await getCollection('project');
+	return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const slug = Astro.params.slug!;
+const listing = getProjectBySlug(slug);
+---
+
+<Layout title={`${entry.data.title} — Dan Park`} description={entry.data.description}>
+	<div class="container">
+		<Breadcrumbs
+			items={[
+				{ label: 'Home', href: '/' },
+				{ label: 'Projects', href: '/projects' },
+				{ label: entry.data.title },
+			]}
+		/>
+		<header class="project-detail-header">
+			<h1>{entry.data.title}</h1>
+			{entry.data.context && <p class="project-detail-context">{entry.data.context}</p>}
+			<p class="project-detail-lead">{entry.data.description}</p>
+			<div class="project-detail-meta">
+				<span class="meta">
+					{entry.data.pubDate.toLocaleDateString('en-US', {
+						month: 'long',
+						day: 'numeric',
+						year: 'numeric',
+					})}
+				</span>
+				{
+					entry.data.tags.length > 0 && (
+						<div class="project-detail-tags">
+							{entry.data.tags.map((tag) => (
+								<span class="tag">{tag}</span>
+							))}
+						</div>
+					)
+				}
+			</div>
+			{
+				listing && (
+					<p class="project-detail-live">
+						<a href={listing.liveUrl} target="_blank" rel="noreferrer">
+							Live site →
+						</a>
+					</p>
+				)
+			}
+		</header>
+		<article class="post-body project-writeup">
+			<Content />
+		</article>
+	</div>
+</Layout>
