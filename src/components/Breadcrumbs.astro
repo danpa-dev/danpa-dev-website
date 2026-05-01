@@ -1,0 +1,32 @@
+---
+export type BreadcrumbItem = { label: string; href?: string };
+
+interface Props {
+	items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+	<ol class="breadcrumbs-list">
+		{
+			items.map((item, i) => {
+				const isLast = i === items.length - 1;
+				return (
+					<li class="breadcrumbs-item">
+						{isLast ? (
+							<span class="breadcrumbs-current" aria-current="page">
+								{item.label}
+							</span>
+						) : (
+							<a class="breadcrumbs-link" href={item.href!}>
+								{item.label}
+							</a>
+						)}
+					</li>
+				);
+			})
+		}
+	</ol>
+</nav>

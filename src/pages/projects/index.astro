@@ -1,56 +1,23 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-
-const projects = [
-	{
-		title: 'Project Atlas',
-		description: 'Edge-rendered UI with Astro and Vercel.',
-		tags: ['Astro', 'Vercel', 'Edge UI'],
-		postUrl: '/blog/project-atlas',
-		liveUrl: 'https://example.com',
-	},
-	{
-		title: 'Neon Grove',
-		description: 'Realtime data layer powered by Supabase.',
-		tags: ['Supabase', 'API', 'Realtime'],
-		postUrl: '/blog/neon-grove',
-		liveUrl: 'https://example.com',
-	},
-	{
-		title: 'Signal Raft',
-		description: 'Static documentation and reference site.',
-		tags: ['Cloudflare', 'Static', 'Docs'],
-		postUrl: '/blog/signal-raft',
-		liveUrl: 'https://example.com',
-	},
-	{
-		title: 'Juniper Studio',
-		description: 'Lightweight CMS for design content.',
-		tags: ['Netlify', 'Design', 'CMS'],
-		postUrl: '/blog/juniper-studio',
-		liveUrl: 'https://example.com',
-	},
-];
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/projects';
 ---
 
 <Layout title="Projects — Dan Park" description="Things I've built.">
 	<div class="container">
+		<Breadcrumbs
+			items={[
+				{ label: 'Home', href: '/' },
+				{ label: 'Projects' },
+			]}
+		/>
 		<div class="section">
 			<h1 class="section-title">Projects</h1>
 			<div class="card-grid">
 				{projects.map((project) => (
-					<a class="project-card" href={project.postUrl}>
-						<h3>{project.title}</h3>
-						<p>{project.description}</p>
-						<div class="tags">
-							{project.tags.map((tag) => (
-								<span class="tag">{tag}</span>
-							))}
-						</div>
-						<div class="card-link-row">
-							<a href={project.liveUrl} target="_blank" rel="noreferrer">Live site &rarr;</a>
-						</div>
-					</a>
+					<ProjectCard project={project} />
 				))}
 			</div>
 		</div>

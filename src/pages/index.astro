@@ -1,31 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
+import { homeProjectCount, projects } from '../data/projects';
 
-const projects = [
-	{
-		title: 'Project Atlas',
-		description: 'Edge-rendered UI with Astro and Vercel.',
-		tags: ['Astro', 'Vercel'],
-		postUrl: '/blog/project-atlas',
-		liveUrl: 'https://example.com',
-	},
-	{
-		title: 'Neon Grove',
-		description: 'Realtime data layer powered by Supabase.',
-		tags: ['Supabase', 'API'],
-		postUrl: '/blog/neon-grove',
-		liveUrl: 'https://example.com',
-	},
-	{
-		title: 'Signal Raft',
-		description: 'Static documentation and reference site.',
-		tags: ['Cloudflare', 'Docs'],
-		postUrl: '/blog/signal-raft',
-		liveUrl: 'https://example.com',
-	},
-];
-
+const homeProjects = projects.slice(0, homeProjectCount);
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3);
@@ -48,22 +27,12 @@ const posts = (await getCollection('blog'))
 		<div class="section">
 			<h2 class="section-title">Projects</h2>
 			<div class="card-grid">
-				{projects.map((project) => (
-					<a class="project-card" href={project.postUrl}>
-						<h3>{project.title}</h3>
-						<p>{project.description}</p>
-						<div class="tags">
-							{project.tags.map((tag) => (
-								<span class="tag">{tag}</span>
-							))}
-						</div>
-					</a>
-				))}
+				{homeProjects.map((project) => <ProjectCard project={project} showLiveLink={false} />)}
 			</div>
 		</div>
 
 		<div class="section">
-			<h2 class="section-title">Writing</h2>
+			<h2 class="section-title">Writings</h2>
 			<div class="post-list">
 				{posts.map((post) => (
 					<a class="post-item" href={`/blog/${post.slug}`}>

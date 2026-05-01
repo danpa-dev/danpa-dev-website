@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog')).sort(
@@ -10,10 +11,16 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort((a, b) =>
 );
 ---
 
-<Layout title="Blog — Dan Park" description="Writing about software, process, and projects.">
+<Layout title="Writings — Dan Park" description="Writing about software, process, and projects.">
 	<div class="container">
+		<Breadcrumbs
+			items={[
+				{ label: 'Home', href: '/' },
+				{ label: 'Writings' },
+			]}
+		/>
 		<div class="section blog-section" id="blog-filter-root">
-			<h1 class="section-title">Blog</h1>
+			<h1 class="section-title">Writings</h1>
 
 			<div class="blog-toolbar">
 				<span class="blog-toolbar-label" id="blog-filter-label">Filter by tag</span>

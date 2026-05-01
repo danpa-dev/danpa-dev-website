@@ -24,10 +24,10 @@ npm run preview  # Preview production build
 ## Project Structure
 
 - `src/pages/` — routes (`/`, `/projects`, `/blog`, `/about`)
-- `src/components/` — Astro components (`Nav`, `Footer`, `ProjectCard`)
+- `src/components/` — Astro components (`Nav`, `Footer`, `Breadcrumbs`, `ProjectCard`)
 - `src/layouts/Layout.astro` — shared page shell
 - `src/styles/global.css` — global design system/styles
-- `src/content/blog/` — Markdown blog posts/content collection
+- `src/data/projects.ts` — project list for home and `/projects`
 - `public/` — static assets
 
 ## Memory / Orientation
