@@ -7,7 +7,7 @@ Astro 5 personal website for **danpa.dev**.
 - Visual redesign is done: Helvetica/system font, blue accent `#2563eb`, bordered project cards, list-style writings.
 - **Projects:** one case study (`netflix-resume`); listing in `src/data/projects.ts`.
 - **Writings:** collection empty (placeholder posts removed); empty states on home and `/writings`.
-- **About:** still Lorem ipsum in `src/pages/about/index.astro` — replace before launch.
+- **About:** hidden from nav (`src/pages/about/index.astro` kept but not linked).
 - **Deploy:** GitHub Pages via `.github/workflows/deploy.yml` (aligned with `dan_resume`: `configure-pages@v5`, artifact upload, `deploy-pages@v4`). Not live until GitHub Pages source + DNS are configured.
 - **`public/CNAME`:** `danpa.dev`. Custom domain must also be set in repo **Settings → Pages** (Actions workflows do not read `CNAME` alone).
 
@@ -26,7 +26,7 @@ If content changes do not appear after deleting Markdown, clear Astro cache: `rm
 
 ## Project structure
 
-- `src/pages/` — routes (`/`, `/projects`, `/writings`, `/about`)
+- `src/pages/` — routes (`/`, `/projects`, `/writings`; `/about` exists but is not in nav)
 - `src/components/` — `Nav`, `Footer`, `Breadcrumbs`, `ProjectCard`
 - `src/layouts/Layout.astro` — shared shell
 - `src/styles/global.css` — design system
@@ -51,8 +51,7 @@ Project cards: prominent external link to the live project; card click goes to t
 
 ## Deploy checklist (human)
 
-1. Replace About placeholder copy
-2. Push to `main` on `danpa-dev/danpa-dev-website`
-3. GitHub **Settings → Pages → Source:** GitHub Actions
-4. **Custom domain:** `danpa.dev`; configure Squarespace A/CNAME records
-5. Enable **Enforce HTTPS** after DNS
+1. Push to `main` on `danpa-dev/danpa-dev-website`
+2. GitHub **Settings → Pages → Source:** GitHub Actions
+3. **Custom domain:** `danpa.dev`; configure Squarespace A/CNAME records
+4. Enable **Enforce HTTPS** after DNS
