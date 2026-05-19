@@ -1,52 +1,58 @@
 # dan_personal_website Agent Guide
 
-Astro 5 personal website intended for `danpa.dev`.
+Astro 5 personal website for **danpa.dev**.
 
-## Current State
+## Current state
 
-- Visual redesign is complete: clean Helvetica/system-font aesthetic, blue accent, bordered cards, list-style writing.
-- Content uses two Markdown collections: **writings** (essays) and **project** (case studies); listing metadata for projects lives in `src/data/projects.ts` (slugs must match `src/content/project/{slug}.md`).
-- Not deployed yet.
-- A GitHub Pages workflow scaffold exists at `.github/workflows/deploy.yml`, but final deployment platform is still TBD.
-- No `public/CNAME` exists yet.
+- Visual redesign is done: Helvetica/system font, blue accent `#2563eb`, bordered project cards, list-style writings.
+- **Projects:** one case study (`netflix-resume`); listing in `src/data/projects.ts`.
+- **Writings:** collection empty (placeholder posts removed); empty states on home and `/writings`.
+- **About:** still Lorem ipsum in `src/pages/about/index.astro` — replace before launch.
+- **Deploy:** GitHub Pages via `.github/workflows/deploy.yml` (aligned with `dan_resume`: `configure-pages@v5`, artifact upload, `deploy-pages@v4`). Not live until GitHub Pages source + DNS are configured.
+- **`public/CNAME`:** `danpa.dev`. Custom domain must also be set in repo **Settings → Pages** (Actions workflows do not read `CNAME` alone).
 
 ## Commands
 
-Use npm from **this** project directory (`dan_personal_website/`), not the parent workspace root—otherwise content collections and routes will not match this site.
+Use npm from **this** project directory (`dan_personal_website/`), not the parent workspace root.
 
 ```bash
 npm install
 npm run dev      # Astro dev server
-npm run build    # Production build to dist/
+npm run build    # Production build → dist/
 npm run preview  # Preview production build
 ```
 
-## Project Structure
+If content changes do not appear after deleting Markdown, clear Astro cache: `rm -rf .astro node_modules/.astro dist` then rebuild.
+
+## Project structure
 
 - `src/pages/` — routes (`/`, `/projects`, `/writings`, `/about`)
-- `src/components/` — Astro components (`Nav`, `Footer`, `Breadcrumbs`, `ProjectCard`)
-- `src/layouts/Layout.astro` — shared page shell
-- `src/styles/global.css` — global design system/styles
+- `src/components/` — `Nav`, `Footer`, `Breadcrumbs`, `ProjectCard`
+- `src/layouts/Layout.astro` — shared shell
+- `src/styles/global.css` — design system
 - `src/data/projects.ts` — project list for home and `/projects`
-- `src/content/writings/` — Markdown **essays** (`/writings`, `/writings/[slug]`)
-- `src/content/project/` — Markdown **project case studies** (`/projects/[slug]`). Filenames must match `postUrl` paths in `src/data/projects.ts`.
-- `public/` — static assets
+- `src/content/writings/` — essays (`/writings/[slug]`)
+- `src/content/project/` — case studies (`/projects/[slug]`); filename slug must match `postUrl` in `projects.ts`
+- `public/` — static assets (`CNAME`, favicon)
+- `.github/workflows/deploy.yml` — GitHub Pages deploy on push to `main`
 
-## Memory / Orientation
+## Memory / orientation
 
-If started from the workspace root (`/Users/danpark/coding/website`), read:
+If started from workspace root (`/Users/danpark/coding/website`):
 
 - `memory/BOOTSTRAP.md`
 - `memory/knowledge/dan-personal-website/overview.md`
 - `memory/knowledge/dan-personal-website/deployment.md`
 - `memory/workstreams/active/personal-website.md`
-- `memory/knowledge/user-preferences.md`
 
-## Important UX Requirements
+## UX requirements
 
-Project cards should have two clear affordances:
+Project cards: prominent external link to the live project; card click goes to the writeup. Understated personal design — not a SaaS landing page.
 
-- A prominent external link (e.g. "Live demo") directly to the hosted project.
-- Card/background click routes to the project writeup.
+## Deploy checklist (human)
 
-Avoid making the site feel like a SaaS/product landing page. Dan prefers understated, personal, clean design with subtle blue accents.
+1. Replace About placeholder copy
+2. Push to `main` on `danpa-dev/danpa-dev-website`
+3. GitHub **Settings → Pages → Source:** GitHub Actions
+4. **Custom domain:** `danpa.dev`; configure Squarespace A/CNAME records
+5. Enable **Enforce HTTPS** after DNS

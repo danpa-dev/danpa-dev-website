@@ -1,46 +1,61 @@
-# Astro Starter Kit: Basics
+# dan_personal_website
 
-```sh
-npm create astro@latest -- --template basics
+Personal site for [danpa.dev](https://danpa.dev). Astro 5, static-first, Helvetica/system typography with a blue accent.
+
+**Repo:** `danpa-dev/danpa-dev-website`
+
+## Commands
+
+Run from this directory (`dan_personal_website/`), not the parent workspace:
+
+```bash
+npm install
+npm run dev       # Dev server (default http://localhost:4321)
+npm run build     # Production build → dist/
+npm run preview   # Serve dist/ locally
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project structure
 
 ```text
-/
+dan_personal_website/
 ├── public/
+│   ├── CNAME           # danpa.dev (custom domain hint for static hosts)
 │   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+├── src/
+│   ├── components/     # Nav, Footer, ProjectCard, Breadcrumbs
+│   ├── content/
+│   │   ├── project/    # Case studies → /projects/[slug]
+│   │   └── writings/   # Essays → /writings/[slug]
+│   ├── data/
+│   │   └── projects.ts # Home + /projects listing (slugs must match content filenames)
+│   ├── layouts/
+│   ├── pages/
+│   └── styles/
+└── .github/workflows/
+    └── deploy.yml      # GitHub Pages (push to main)
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Content
 
-## 🧞 Commands
+- **Projects:** Markdown in `src/content/project/`; card metadata and order in `src/data/projects.ts`. Slug = filename without `.md` (e.g. `netflix-resume.md` → `/projects/netflix-resume`).
+- **Writings:** Markdown in `src/content/writings/`. Collection may be empty; pages handle that.
 
-All commands are run from the root of the project, from a terminal:
+## Deployment (GitHub Pages)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Target domain: **danpa.dev** (apex). Workflow: `.github/workflows/deploy.yml` — same pattern as `dan_resume` (`configure-pages` → `upload-pages-artifact` → `deploy-pages`).
 
-## 👀 Want to learn more?
+**One-time GitHub setup (manual):**
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Repo **Settings → Pages → Build and deployment → Source:** **GitHub Actions**
+2. **Custom domain:** `danpa.dev`
+3. Squarespace DNS: four `A` records on `@` to GitHub Pages IPs (see [GitHub docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)); optional `www` CNAME → `danpa-dev.github.io`
+4. After DNS propagates: **Enforce HTTPS**
+
+Push to `main` (or run the workflow manually) to deploy.
+
+Workspace-level deployment notes: `../memory/knowledge/dan-personal-website/deployment.md`
+
+## Related sites
+
+- [resume.danpa.dev](https://resume.danpa.dev) — Netflix-style resume (`dan_resume/`, separate repo)
