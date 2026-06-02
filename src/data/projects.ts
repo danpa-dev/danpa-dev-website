@@ -10,7 +10,7 @@ export type Project = {
 export const projects: Project[] = [
 	{
 		title: 'Netflix Resume',
-		description: 'Interactive Netflix-style portfolio and resume.',
+		description: 'For fun - interactive Netflix-style portfolio.',
 		tags: ['React', 'TypeScript', 'Vite'],
 		postUrl: '/projects/netflix-resume',
 		liveUrl: 'https://resume.danpa.dev',
