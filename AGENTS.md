@@ -29,7 +29,8 @@ If content changes do not appear after deleting Markdown, clear Astro cache: `rm
 - `src/pages/` — routes (`/`, `/projects`, `/writings`; `/about` exists but is not in nav)
 - `src/components/` — `Nav`, `Footer`, `Breadcrumbs`, `ProjectCard`
 - `src/layouts/Layout.astro` — shared shell
-- `src/styles/global.css` — design system
+- `src/styles/global.css` — design system (includes `.post-body` prose typography for Markdown)
+- `docs/markdown-content.md` — required `.post-body` wrapper and prose styling contract
 - `src/data/projects.ts` — project list for home and `/projects`
 - `src/content/writings/` — essays (`/writings/[slug]`)
 - `src/content/project/` — case studies (`/projects/[slug]`); filename slug must match `postUrl` in `projects.ts`
@@ -44,6 +45,12 @@ If started from workspace root (`/Users/danpark/coding/website`):
 - `memory/knowledge/dan-personal-website/overview.md`
 - `memory/knowledge/dan-personal-website/deployment.md`
 - `memory/workstreams/active/personal-website.md`
+
+## Markdown / prose styling
+
+- `global.css` uses `* { margin: 0; padding: 0 }`, which removes default `ul`/`ol` indentation.
+- All Markdown-rendered pages must wrap content in **`.post-body`** (see `docs/markdown-content.md`).
+- Add new element styles (tables, figures, etc.) under `.post-body` in `global.css`, not as one-off page CSS.
 
 ## UX requirements
 

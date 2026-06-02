@@ -41,6 +41,8 @@ dan_personal_website/
 - **Projects:** Markdown in `src/content/project/`; card metadata and order in `src/data/projects.ts`. Slug = filename without `.md` (e.g. `netflix-resume.md` → `/projects/netflix-resume`).
 - **Writings:** Markdown in `src/content/writings/`. Collection may be empty; pages handle that.
 
+Rendered Markdown (writings, project case studies, about copy) is wrapped in **`.post-body`** for typography. The global CSS reset strips default list padding, so list/block styles live under `.post-body` in `src/styles/global.css`. See **`docs/markdown-content.md`** before adding new Markdown routes or prose classes.
+
 ## Deployment (GitHub Pages)
 
 Target domain: **danpa.dev** (apex). Workflow: `.github/workflows/deploy.yml` — same pattern as `dan_resume` (`configure-pages` → `upload-pages-artifact` → `deploy-pages`).

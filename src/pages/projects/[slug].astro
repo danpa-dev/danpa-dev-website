@@ -31,10 +31,11 @@ const listing = getProjectBySlug(slug);
 			<div class="project-detail-meta">
 				<span class="meta">
 					{entry.data.pubDate.toLocaleDateString('en-US', {
-						month: 'long',
-						day: 'numeric',
-						year: 'numeric',
-					})}
+							month: 'long',
+							day: 'numeric',
+							year: 'numeric',
+							timeZone: 'UTC',
+						})}
 				</span>
 				{
 					entry.data.tags.length > 0 && (

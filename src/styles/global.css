@@ -12,6 +12,8 @@
 	--font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* Universal reset — also strips ul/ol padding. Markdown from content collections
+ * must live under .post-body; see docs/markdown-content.md */
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -401,7 +403,7 @@ main {
 	font-weight: 500;
 }
 
-/* Article layouts — writings essays & project case studies (shared .post-body typography) */
+/* Article layouts — writings, project case studies, and other Markdown HTML */
 
 .post-header {
 	margin-bottom: 40px;
@@ -488,10 +490,16 @@ main {
 	border-top: 1px solid var(--border);
 }
 
+/* .post-body — prose typography for rendered Markdown (see docs/markdown-content.md) */
+
 .post-body {
 	font-size: 15px;
 	line-height: 1.8;
 	color: var(--text-secondary);
+}
+
+.post-body > :first-child {
+	margin-top: 0;
 }
 
 .post-body h2 {
@@ -501,23 +509,84 @@ main {
 	margin: 32px 0 12px;
 }
 
+.post-body h3 {
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--text);
+	margin: 24px 0 8px;
+}
+
 .post-body p {
 	margin-bottom: 16px;
 }
 
-/* About */
-
-.about-content {
-	color: var(--text-secondary);
-	line-height: 1.8;
+.post-body ul,
+.post-body ol {
+	margin: 0 0 16px;
+	padding-left: 1.5em;
+	list-style-position: outside;
 }
 
-.about-content p {
-	margin-bottom: 16px;
+.post-body li {
+	margin-bottom: 8px;
 }
 
-.about-content p:last-child {
+.post-body li:last-child {
 	margin-bottom: 0;
+}
+
+.post-body ul ul,
+.post-body ul ol,
+.post-body ol ul,
+.post-body ol ol {
+	margin-top: 8px;
+	margin-bottom: 0;
+}
+
+.post-body blockquote {
+	margin: 0 0 16px;
+	padding-left: 1em;
+	border-left: 3px solid var(--border);
+	color: var(--text-secondary);
+}
+
+.post-body code {
+	font-size: 0.92em;
+	background: #f4f4f5;
+	padding: 0.12em 0.35em;
+	border-radius: 4px;
+}
+
+.post-body pre {
+	overflow-x: auto;
+	margin: 0 0 16px;
+	padding: 12px 16px;
+	background: #f4f4f5;
+	border-radius: 6px;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.post-body pre code {
+	padding: 0;
+	background: none;
+	border-radius: 0;
+}
+
+.post-body hr {
+	border: none;
+	border-top: 1px solid var(--border);
+	margin: 32px 0;
+}
+
+.post-body a {
+	color: var(--accent);
+}
+
+.post-body a:hover,
+.post-body a:focus-visible {
+	color: var(--accent-hover);
+	text-decoration: underline;
 }
 
 /* Footer */

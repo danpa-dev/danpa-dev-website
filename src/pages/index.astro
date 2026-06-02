@@ -15,7 +15,7 @@ const posts = (await getCollection('writings'))
 		<div class="intro">
 			<h1>Dan Park</h1>
 			<p>
-				Software engineer who likes to understand things deeply. Great conversationalist, unreasonably good at trivia, currently down a rabbit hole of AI agents and system design.
+				Software engineer who likes to understand things deeply. Great conversationalist, decent at trivia, currently down a rabbit hole of AI agents and system design.
 			</p>
 			<div class="links">
 				<a href="https://github.com/danpa-dev" target="_blank" rel="noreferrer">GitHub</a>
@@ -44,7 +44,7 @@ const posts = (await getCollection('writings'))
 					posts.map((post) => (
 						<a class="post-item" href={`/writings/${post.slug}`}>
 							<span class="post-title">{post.data.title}</span>
-							<span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+								<span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })}</span>
 						</a>
 					))
 				)}
