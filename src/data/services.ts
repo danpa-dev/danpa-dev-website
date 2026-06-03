@@ -8,22 +8,22 @@ export const services: Service[] = [
 	{
 		title: 'Healthtech Integrations',
 		description:
-			'Untangle the handoffs between healthcare systems, vendor APIs, files, internal tools, and downstream data workflows. Make integrations easier to understand, monitor, debug, and improve.',
+			'Make healthcare integrations less painful to run and improve. Untangle messy handoffs between vendor EHR systems and client systems to create reliable healthcare data movement.',
 	},
 	{
-		title: 'Data & Operational Workflows',
+		title: 'Data Infrastructure & Workflow Automation',
 		description:
-			'Strengthen the data workflows that reporting, operations, and decision-making depend on. Reduce brittle pipelines, unclear cleanup steps, and recurring fixes that slow the team down.',
+			'Build and improve backend systems for large-scale data work: ETL pipelines, internal APIs, CI/CD, observability, and workflow automation for data, forecasting, and operations teams.',
 	},
 	{
 		title: 'Internal Tools & Automation',
 		description:
-			'Build practical internal software for work that has outgrown spreadsheets, manual checks, or one-off scripts. Focused tools that save time, reduce mistakes, and fit the way the team already works.',
+			'Replace time-consuming, repetitive manual work with automated tools. Create practical software that saves time, reduces avoidable mistakes, and fits the way the team already works.',
 	},
 	{
 		title: 'AI-Assisted Team Workflows',
 		description:
-			'Bring AI into engineering and operational workflows in a way people can actually trust. Useful context, clear review habits, documentation, and approval points around real team processes.',
+			'Bring AI agents into real team workflows in a way that is reliable, useful, and easy to trust. Focus on practical adoption, clear review points, strong context, and measurable value in day-to-day work.',
 	},
 ];
 
