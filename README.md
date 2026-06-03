@@ -23,12 +23,13 @@ dan_personal_website/
 │   ├── CNAME           # danpa.dev (custom domain hint for static hosts)
 │   └── favicon.svg
 ├── src/
-│   ├── components/     # Nav, Footer, ProjectCard, Breadcrumbs
+│   ├── components/     # Nav, Footer, ProjectCard, ServiceItem, Breadcrumbs
 │   ├── content/
 │   │   ├── project/    # Case studies → /projects/[slug]
 │   │   └── writings/   # Essays → /writings/[slug]
 │   ├── data/
-│   │   └── projects.ts # Home + /projects listing (slugs must match content filenames)
+│   │   ├── projects.ts # Home + /projects listing (slugs must match content filenames)
+│   │   └── services.ts # Home-only Services section + booking URL
 │   ├── layouts/
 │   ├── pages/
 │   └── styles/
@@ -40,6 +41,7 @@ dan_personal_website/
 
 - **Projects:** Markdown in `src/content/project/`; card metadata and order in `src/data/projects.ts`. Slug = filename without `.md` (e.g. `netflix-resume.md` → `/projects/netflix-resume`).
 - **Writings:** Markdown in `src/content/writings/`. Collection may be empty; pages handle that.
+- **Services:** Static copy in `src/data/services.ts`; rendered on the home page only (not in nav, no detail routes).
 
 Rendered Markdown (writings, project case studies, about copy) is wrapped in **`.post-body`** for typography. The global CSS reset strips default list padding, so list/block styles live under `.post-body` in `src/styles/global.css`. See **`docs/markdown-content.md`** before adding new Markdown routes or prose classes.
 

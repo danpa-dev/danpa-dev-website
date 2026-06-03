@@ -241,6 +241,55 @@ main {
 	text-decoration: underline;
 }
 
+/* Services (home only) */
+
+.service-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.service-item {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 20px;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	background: var(--bg-card);
+}
+
+.service-item h3 {
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.35;
+	color: var(--text);
+	margin: 0;
+}
+
+.service-item p {
+	font-size: 14px;
+	line-height: 1.55;
+	color: var(--text-secondary);
+	margin: 0;
+}
+
+.services-cta {
+	margin-top: 24px;
+	font-size: 15px;
+	line-height: 1.6;
+	color: var(--text-secondary);
+}
+
+.services-cta a {
+	color: var(--accent);
+}
+
+.services-cta a:hover {
+	color: var(--accent-hover);
+	text-decoration: underline;
+}
+
 /* Blog / post list */
 
 .post-list {

@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import ServiceItem from '../components/ServiceItem.astro';
 import { getCollection } from 'astro:content';
 import { homeProjectCount, projects } from '../data/projects';
+import { bookingCallUrl, services } from '../data/services';
 
 const homeProjects = projects.slice(0, homeProjectCount);
 const posts = (await getCollection('writings'))
@@ -10,18 +12,35 @@ const posts = (await getCollection('writings'))
 	.slice(0, 3);
 ---
 
-<Layout title="Dan Park" description="Developer, builder, and writer.">
+<Layout
+	title="Dan Park"
+	description="Engineering consulting for healthtech integrations, data workflows, internal tooling, and practical AI adoption."
+>
 	<div class="container">
 		<div class="intro">
 			<h1>Dan Park</h1>
 			<p>
-				ex-AWS engineer with healthtech startup experience across healthcare system integrations, big-data ETL and Agentic AI workflows for technical & non-technical users.
+				I help healthtech and operations-heavy teams turn brittle integrations, data workflows,
+				and internal processes into reliable software. Ex-AWS engineer with startup experience
+				across healthcare systems, large-scale ETL, and practical AI workflows.
 			</p>
 			<div class="links">
 				<a href="https://github.com/danpa-dev" target="_blank" rel="noreferrer">GitHub</a>
 				<a href="https://www.linkedin.com/in/dansdansrevolution" target="_blank" rel="noreferrer">LinkedIn</a>
 				<a href="mailto:parkdanws@gmail.com">Email</a>
 			</div>
+		</div>
+
+		<div class="section">
+			<h2 class="section-title">How I Help Teams</h2>
+			<div class="service-grid">
+				{services.map((service) => (
+					<ServiceItem service={service} />
+				))}
+			</div>
+			<p class="services-cta">
+				<a href={bookingCallUrl} target="_blank" rel="noreferrer">Book a free 30-minute diagnostic call</a>.
+			</p>
 		</div>
 
 		<div class="section">
@@ -44,7 +63,7 @@ const posts = (await getCollection('writings'))
 					posts.map((post) => (
 						<a class="post-item" href={`/writings/${post.slug}`}>
 							<span class="post-title">{post.data.title}</span>
-								<span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })}</span>
+							<span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })}</span>
 						</a>
 					))
 				)}

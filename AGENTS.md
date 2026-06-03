@@ -6,7 +6,8 @@ Astro 5 personal website for **danpa.dev**.
 
 - Visual redesign is done: Helvetica/system font, blue accent `#2563eb`, bordered project cards, list-style writings.
 - **Projects:** one case study (`netflix-resume`); listing in `src/data/projects.ts`.
-- **Writings:** collection empty (placeholder posts removed); empty states on home and `/writings`.
+- **Writings:** essays on home and `/writings`.
+- **Services:** home-only consulting section from `src/data/services.ts`; not in nav, no `/services` route.
 - **About:** hidden from nav (`src/pages/about/index.astro` kept but not linked).
 - **Deploy:** GitHub Pages via `.github/workflows/deploy.yml` (aligned with `dan_resume`: `configure-pages@v5`, artifact upload, `deploy-pages@v4`). Not live until GitHub Pages source + DNS are configured.
 - **`public/CNAME`:** `danpa.dev`. Custom domain must also be set in repo **Settings → Pages** (Actions workflows do not read `CNAME` alone).
@@ -27,11 +28,12 @@ If content changes do not appear after deleting Markdown, clear Astro cache: `rm
 ## Project structure
 
 - `src/pages/` — routes (`/`, `/projects`, `/writings`; `/about` exists but is not in nav)
-- `src/components/` — `Nav`, `Footer`, `Breadcrumbs`, `ProjectCard`
+- `src/components/` — `Nav`, `Footer`, `Breadcrumbs`, `ProjectCard`, `ServiceItem`
 - `src/layouts/Layout.astro` — shared shell
 - `src/styles/global.css` — design system (includes `.post-body` prose typography for Markdown)
 - `docs/markdown-content.md` — required `.post-body` wrapper and prose styling contract
 - `src/data/projects.ts` — project list for home and `/projects`
+- `src/data/services.ts` — home Services section copy and Google Calendar booking URL
 - `src/content/writings/` — essays (`/writings/[slug]`)
 - `src/content/project/` — case studies (`/projects/[slug]`); filename slug must match `postUrl` in `projects.ts`
 - `public/` — static assets (`CNAME`, favicon)
